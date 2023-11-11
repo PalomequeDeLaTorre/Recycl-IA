@@ -12,7 +12,7 @@
     <h2 style="font-size: 12px;">Recolector Verificado ✅</h2>
 
     <div ><img class="circulo" src="/Perfil.jpg" alt=""></div>
-    <h1 style="margin-top: 20px; font-size: 20px;" >Total de puntos : <span id="totalPuntos">0</span></h1>
+    <h1 style="margin-top: 20px; font-size: 20px;" >Total de puntos : <i id="totalPuntos">0</i></h1>
     <progress class="progress" value="totalPuntos" max="100"></progress>
   
 
@@ -31,6 +31,8 @@
     <script>
         async function startScanner() {
             try {
+                let totalPuntos = 0;
+
                 const videoElement = document.getElementById('camera');
                 const scanner = new Instascan.Scanner({ video: videoElement });
                 
@@ -38,9 +40,6 @@
                     const puntosEscaneados = parseInt(content, 10);
                     if (!isNaN(puntosEscaneados)) {
                         totalPuntos += puntosEscaneados;
-
-
-                        // Actualizar el total de puntos en la página
                         document.getElementById('totalPuntos').textContent = totalPuntos;
                         document.querySelector('progress').value = totalPuntos;
 
