@@ -2,11 +2,16 @@
 <%- include ("../templates/menu")%>
 
 <section class="barra">
+    <h1>Ever Alonso</h1>
+
     <div ><img class="circulo" src="/Perfil.jpg" alt=""></div>
+
+    <progress class="progress" value="50" max="100"></progress>
+    <h1>10/100</h1>
+
 </section>
 
 <section class="puntos">
-    <!--<button>Scanear puntos</button> -->
     <div>
         <button class="button" onclick="startScanner()">Iniciar Escáner</button>
     </div>
@@ -17,6 +22,7 @@
 
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script>
+        document.querySelector('progress').value = 10;
         async function startScanner() {
             try {
                 const videoElement = document.getElementById('camera');
@@ -25,13 +31,13 @@
                 scanner.addListener('scan', function (content) {
                     alert('Código escaneado: ' + content);
                     window.location.href = content;
-                    stopScanner(); // Detener el escáner después de un éxito
+                    stopScanner(); 
                 });
 
                 Instascan.Camera.getCameras()
                     .then(cameras => {
                         if (cameras.length > 0) {
-                            const selectedCamera = cameras[cameras.length - 1]; // Usar la cámara trasera si está disponible
+                            const selectedCamera = cameras[cameras.length - 1]; 
                             scanner.start(selectedCamera);
                         } else {
                             console.error('No se encontraron cámaras disponibles.');
