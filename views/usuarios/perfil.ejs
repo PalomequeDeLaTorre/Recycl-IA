@@ -8,40 +8,42 @@
 <section class="puntos">
     <!--<button>Scanear puntos</button> -->
     <h1>Acceso a la Cámara Trasera</h1>
-    <button onclick="startCamera()">Iniciar Cámara Trasera</button>
+    <h1>Escaneo de Código QR</h1>
+    <button onclick="startScanner()">Iniciar Escáner</button>
     <video id="camera" autoplay playsinline></video>
 
+    <script src="https://rawgit.com/zxing-js/library/master/instascan.min.js"></script>
     <script>
-        async function startCamera() {
+        let scanner;
+
+        async function startScanner() {
             try {
-                const cameras = await navigator.mediaDevices.enumerateDevices();
-                const videoDevices = cameras.filter(device => device.kind === 'videoinput');
-                let selectedDevice;
+                scanner = new Instascan.Scanner({ video: document.getElementById('camera') });
+                scanner.addListener('scan', function(content) {
+                    alert('Código escaneado: ' + content);
+                    stopScanner(); // Detener el escáner después de un éxito
+                });
 
-                console.log('Video Devices:', videoDevices);
-
-                if (videoDevices.length > 0) {
+                const cameras = await Instascan.Camera.getCameras();
+                if (cameras.length > 0) {
                     // Preferir la cámara trasera si está disponible
-                    selectedDevice = videoDevices.find(device => device.label.includes('back')) || videoDevices[0];
-
-                    console.log('Selected Device:', selectedDevice);
-
+                    const selectedCamera = cameras.find(camera => camera.label.includes('back')) || cameras[0];
+                    scanner.start(selectedCamera);
                 } else {
                     console.error('No se encontraron cámaras disponibles.');
-                    return;
                 }
-
-                const stream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: selectedDevice.deviceId } });
-
-                // Obtener el elemento de video y establecer el flujo de la cámara
-                const videoElement = document.getElementById('camera');
-                videoElement.srcObject = stream;
             } catch (error) {
-                console.error('Error al acceder a la cámara:', error);
+                console.error('Error al iniciar el escáner:', error);
             }
         }
-    </script>
 
+        function stopScanner() {
+            if (scanner) {
+                scanner.stop();
+            }
+        }
+    </script>        
+       
 </section>
 
 <div class="color-bar" style="background-image: linear-gradient(#FFFF01, #037F03); height: 90px; margin-top: 400px;">
