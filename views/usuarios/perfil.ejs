@@ -12,7 +12,7 @@
     <h2 style="font-size: 12px;">Recolector Verificado ✅</h2>
 
     <div ><img class="circulo" src="/Perfil.jpg" alt=""></div>
-    <h1 style="margin-top: 20px; font-size: 20px;" >Total de puntos :</h1><span id="totalPuntos">0</span><h1 style="margin-top: 20px; font-size: 20px;"> /100></h1>
+    <h1 style="margin-top: 20px; font-size: 20px;" >Total de puntos : <span id="totalPuntos">0</span></h1>
     <progress class="progress" value="50" max="100"></progress>
     <h2>10/100%</h2>
   
@@ -30,7 +30,6 @@
 
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script>
-        document.querySelector('progress').value = 10;
         async function startScanner() {
             try {
                 const videoElement = document.getElementById('camera');
@@ -43,6 +42,8 @@
 
                         // Actualizar el total de puntos en la página
                         document.getElementById('totalPuntos').textContent = totalPuntos;
+                        document.querySelector('progress').value = totalPuntos;
+
                     } else {
                         alert('Código QR no válido. Asegúrate de escanear un código con un número válido.');
                     }
