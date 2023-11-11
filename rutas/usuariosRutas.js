@@ -25,6 +25,10 @@ ruta.post("/register",(req,res)=>{
     res.redirect("/login");
 });
 
+ruta.get("/politicasyprivacidad",async(req,res)=>{
+    res.render("usuarios/politicasyprivacidad");
+});
+
 module.exports=ruta;
 
 
