@@ -41,8 +41,8 @@
                         totalPuntos += puntosEscaneados;
 
                         // Actualizar el total de puntos en la página
-                        document.getElementById('totalPuntos').textContent = totalPuntos;
-                        document.querySelector('progress').value = totalPuntos;
+                        document.getElementById('totalPuntos').textContent += totalPuntos;
+                        document.querySelector('progress').value += totalPuntos;
 
                     } else {
                         alert('Código QR no válido. Asegúrate de escanear un código con un número válido.');
