@@ -12,7 +12,7 @@
     <h2 style="font-size: 12px;">Recolector Verificado ✅</h2>
 
     <div ><img class="circulo" src="/Perfil.jpg" alt=""></div>
-    <h1 style="margin-top: 20px; font-size: 20px;" >Total de puntos: <span id="totalPuntos">0</span> /100</h1>
+    <h1 style="margin-top: 20px; font-size: 20px;" >Total de puntos :</h1><span id="totalPuntos">0</span><h1 style="margin-top: 20px; font-size: 20px;"> /100></h1>
     <progress class="progress" value="50" max="100"></progress>
     <h2>10/100%</h2>
   
@@ -46,6 +46,7 @@
                     } else {
                         alert('Código QR no válido. Asegúrate de escanear un código con un número válido.');
                     }
+                    alert('Puntos agregados: ' + content);
 
                     stopScanner(); 
                 });
