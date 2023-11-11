@@ -1,0 +1,44 @@
+<%- include ("../templates/encabezado") %>
+<%- include ("../templates/menu")%>
+<div class="container mt-5">
+  <form action="/" method="post">
+    <div class="text-center">
+        <img src="/Logo.png" alt="Imagen" style="max-width: 200px; height: auto;">
+      </div>
+    <div class="container mt-5">
+      <h1 class="text-center small-title" style="font-size: 25px; margin-top: 20px; font-family: 'Playfair Display', serif;">RECYCL-IA</h1>
+      <div class="text-center mt-3">
+        <p class="small-text" style="font-size: 20px; text-align: center; color: rgb(0, 0, 0); padding-top: 40px;">"¡Gracias por descargar nuestra app y comenzar tu día ayudando al medio ambiente!"</p>
+      </div>
+      <div class="text-center mt-3">
+        <button class="espacio" style="background-image: linear-gradient(#037F03,#037F03) ; color: #ffffff; border: none; border-radius: 10px; padding: 15px; width:60%;">
+          <a href="/register" style="color: #ffffff; text-decoration: none; display: block; height: 100%; font-size: 20px;">Comenzar</a>
+        </button>
+      </div>
+    </div>
+    </div>
+  </form>
+</div>
+<div class="color-bar" style="background-image: linear-gradient(#FFFF01, #037F03); height: 90px; margin-top: 400px;">
+  <p class="text-center" style="font-size: 12px; padding-top: 30px; padding-right: 30px;"><a href="/politicasDePrivacidad" style="color: #ffffff;">Políticas de Privacidad</a></p>
+</div>
+
+<style>
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .text-center img {
+    max-width: 200px;
+    height: auto;
+    animation: rotate 5s linear infinite; 
+  }
+
+</style>
+
+<%- include ("../templates/pie") %>

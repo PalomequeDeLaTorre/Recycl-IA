@@ -1,0 +1,44 @@
+<%- include ("../templates/encabezado") %>
+<%- include ("../templates/menu")%>
+
+<section class="barra">
+    <div class="circulo"><h1>10/100</h1></div>
+</section>
+
+<section class="puntos">
+    <!--<button>Scanear puntos</button> -->
+    <h1>Escaneo de Código QR</h1>
+    <button onclick="startScanner()">Iniciar Escáner</button>
+    <video id="camera" autoplay playsinline></video>
+
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script>
+        let scanner;
+
+        async function startScanner() {
+            try {
+                scanner = new Instascan.Scanner({ video: document.getElementById('camera') });
+                scanner.addListener('scan', function(content) {
+                    alert('Código escaneado: ' + content);
+                });
+
+                const cameras = await Instascan.Camera.getCameras();
+                if (cameras.length > 0) {
+                    scanner.start(cameras[0]);
+                } else {
+                    console.error('No se encontraron cámaras disponibles.');
+                }
+            } catch (error) {
+                console.error('Error al iniciar el escáner:', error);
+            }
+        }
+    </script>
+
+</section>
+
+<div class="color-bar" style="background-image: linear-gradient(#FFFF01, #037F03); height: 90px; margin-top: 400px;">
+    <p class="text-center" style="font-size: 12px; padding-top: 30px; padding-right: 30px;"><a href="/politicasDePrivacidad" style="color: #ffffff;">Políticas de Privacidad</a></p>
+  </div>
+  
+
+<%- include ("../templates/pie") %>
