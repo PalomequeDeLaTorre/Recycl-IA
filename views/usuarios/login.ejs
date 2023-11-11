@@ -6,7 +6,7 @@
     <div class="text-center">
         <img src="/Logo.png" alt="Imagen" style="max-width: 200px; height: auto;">
       </div>
-    <div class="card">
+    <div class="card" style="margin-top: 60px;">
         <div class="card-header">
             <h1>Login</h1>
         </div>
@@ -24,6 +24,95 @@
     <p class="text-center" style="font-size: 12px; padding-top: 30px; padding-right: 30px;"><a href="/politicasDePrivacidad" style="color: #ffffff;">Políticas de Privacidad</a></p>
   </div>
 
+  <style>
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
   
+    .text-center img {
+      max-width: 200px;
+      height: auto;
+      animation: rotate 5s linear infinite; 
+    }
+
+    
+    
+  
+    body {
+    background-color: #4CAF50;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.card {
+    background-image: linear-gradient(#D5F6D8,#037F03);
+    border: 1px solid #D5F6D8;
+    border-radius: 30px;
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.card-header {
+    background-color: #D5F6D8;
+    border-bottom: 1px solid #ffffff;
+    padding: 10px;
+    text-align: center;
+}
+
+.card-header h1 {
+    font-size: 24px;
+}
+
+.card-body {
+    padding: 20px 0;
+}
+
+.form-control {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    color: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: #FFFF01;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+}
+
+a {
+    color: #FFFF01;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+</style>
 
 <%- include ("../templates/pie") %>
