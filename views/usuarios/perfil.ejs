@@ -7,9 +7,11 @@
 
 <section class="puntos">
     <!--<button>Scanear puntos</button> -->
-    <h1>Escaneo de Código QR</h1>
     <button onclick="startScanner()">Iniciar Escáner</button>
-    <video id="camera" autoplay playsinline></video>
+    <br>
+    <div class="video">
+        <video id="camera" autoplay playsinline></video>
+    </div>
 
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script>
@@ -17,7 +19,7 @@
             try {
                 const videoElement = document.getElementById('camera');
                 const scanner = new Instascan.Scanner({ video: videoElement });
-
+                
                 scanner.addListener('scan', function (content) {
                     alert('Código escaneado: ' + content);
                     window.location.href = content;
