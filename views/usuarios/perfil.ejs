@@ -39,12 +39,9 @@
                     if (!isNaN(puntosEscaneados)) {
                         totalPuntos += puntosEscaneados;
 
-                        const totalPuntosElement = document.getElementById('totalPuntos');
-                        totalPuntosElement.textContent = totalPuntos;
-
 
                         // Actualizar el total de puntos en la página
-                        //document.getElementById('totalPuntos').textContent = totalPuntos;
+                        document.getElementById('totalPuntos').textContent = totalPuntos;
                         document.querySelector('progress').value = totalPuntos;
 
                     } else {
