@@ -7,43 +7,63 @@
 
 <section class="puntos">
     <!--<button>Scanear puntos</button> -->
-    <h1>Acceso a la Cámara Trasera</h1>
     <h1>Escaneo de Código QR</h1>
     <button onclick="startScanner()">Iniciar Escáner</button>
     <video id="camera" autoplay playsinline></video>
 
-    <script src="https://rawgit.com/zxing-js/library/master/instascan.min.js"></script>
     <script>
-        let scanner;
-
         async function startScanner() {
             try {
-                scanner = new Instascan.Scanner({ video: document.getElementById('camera') });
-                scanner.addListener('scan', function(content) {
-                    alert('Código escaneado: ' + content);
-                    stopScanner(); // Detener el escáner después de un éxito
-                });
+                const constraints = { video: { facingMode: 'environment' } }; // Intentar usar la cámara trasera
 
-                const cameras = await Instascan.Camera.getCameras();
-                if (cameras.length > 0) {
-                    // Preferir la cámara trasera si está disponible
-                    const selectedCamera = cameras.find(camera => camera.label.includes('back')) || cameras[0];
-                    scanner.start(selectedCamera);
-                } else {
-                    console.error('No se encontraron cámaras disponibles.');
-                }
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+
+                // Obtener el elemento de video y establecer el flujo de la cámara
+                const videoElement = document.getElementById('camera');
+                videoElement.srcObject = stream;
+
+                const track = stream.getVideoTracks()[0];
+                const imageCapture = new ImageCapture(track);
+
+                const worker = new Worker('https://cdn.jsdelivr.net/npm/jsqr@1.0.0/build/worker.min.js');
+
+                worker.onmessage = function (event) {
+                    if (event.data.length > 0) {
+                        alert('Código escaneado: ' + event.data[0].data);
+                        stopScanner(); // Detener el escáner después de un éxito
+                    }
+                };
+
+                setInterval(() => {
+                    imageCapture.grabFrame()
+                        .then(imageBitmap => {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = imageBitmap.width;
+                            canvas.height = imageBitmap.height;
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(imageBitmap, 0, 0, canvas.width, canvas.height);
+
+                            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                            worker.postMessage(imageData);
+                        })
+                        .catch(error => console.error(error));
+                }, 2000); // Escanea cada 2 segundos
+
             } catch (error) {
-                console.error('Error al iniciar el escáner:', error);
+                console.error('Error al acceder a la cámara:', error);
             }
         }
 
         function stopScanner() {
-            if (scanner) {
-                scanner.stop();
-            }
+            const videoElement = document.getElementById('camera');
+            const stream = videoElement.srcObject;
+            const tracks = stream.getTracks();
+
+            tracks.forEach(track => track.stop());
+            videoElement.srcObject = null;
         }
-    </script>        
-       
+    </script>
+
 </section>
 
 <div class="color-bar" style="background-image: linear-gradient(#FFFF01, #037F03); height: 90px; margin-top: 400px;">
