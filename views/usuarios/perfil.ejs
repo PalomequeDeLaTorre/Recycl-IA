@@ -1,19 +1,27 @@
 <%- include ("../templates/encabezado") %>
 <%- include ("../templates/menu")%>
 
-<section class="barra">
+<section class="barra" style="position: relative;">
+    <div class="img" style="position: absolute; top: -70px; left: 8px;">
+        <img src="/Logo.png" alt="Imagen" style="max-width: 50px; height: auto;">
+    </div>
+    <div style="position: absolute; top: -70px; right: 8px;">
+        <img src="/menuSimulacion.png" alt="Imagen" style="max-width: 50px; height: auto;">
+    </div>
     <h1>Ever Alonso</h1>
+    <h2 style="font-size: 12px;">Recolector Verificado ✅</h2>
 
     <div ><img class="circulo" src="/Perfil.jpg" alt=""></div>
-
+    <h1 style="margin-top: 20px; font-size: 20px;" >Total de puntos</h1>
     <progress class="progress" value="50" max="100"></progress>
-    <h1>10/100</h1>
+    <h2>10/100%</h2>
+  
 
 </section>
 
 <section class="puntos">
     <div>
-        <button class="button" onclick="startScanner()">Iniciar Escáner</button>
+        <button class="button" style="color: #000000; background-color: #FFFF01;" onclick="startScanner()">Escánear Contenedor</button>
     </div>
 
     <div class="video">
@@ -56,10 +64,32 @@
         }
     </script>
 </section>
-
-<div class="color-bar" style="background-image: linear-gradient(#FFFF01, #037F03); height: 90px; margin-top: 400px;">
-    <p class="text-center" style="font-size: 12px; padding-top: 30px; padding-right: 30px;"><a href="/politicasDePrivacidad" style="color: #ffffff;">Políticas de Privacidad</a></p>
+<button class="espacio" style="margin-left: 21%; background-image: linear-gradient(#ff2104, #037F03) ; color: #ffffff; border: none; border-radius: 10px; padding: 10px; width:60%;">
+    <a href="/miPremio" style="color: #ffffff; text-decoration: none; display: block; height: 100%; font-size: 20px; font-weight: bold;">Recompensas</a>
+  </button>
+  <h2 style="font-size: 15px; text-align: center; padding-top: 10px; color: white;">!Ayuda al medio ambiente y gana¡</h2>
+<div class="color-bar" style="background-image: linear-gradient(#FFFF01, #037F03); height: 90px; margin-top: 100px;">
+    <p class="text-center" style="font-size: 15px; padding-top: 35px; padding-right: 5px;"><a href="/politicasyprivacidad" style="color: #ffffff;">Políticas de Privacidad</a></p>
   </div>
+
+  <style>
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  
+    .img {
+      max-width: 200px;
+      height: auto;
+      animation: rotate 5s linear infinite; 
+    }
+  </style>
+
+  
   
 
 <%- include ("../templates/pie") %>

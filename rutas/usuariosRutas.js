@@ -28,6 +28,9 @@ ruta.post("/register",(req,res)=>{
 ruta.get("/politicasyprivacidad",async(req,res)=>{
     res.render("usuarios/politicasyprivacidad");
 });
+ruta.get("/miPremio",(req,res)=>{
+    res.render("usuarios/premios");
+});
 
 module.exports=ruta;
 
