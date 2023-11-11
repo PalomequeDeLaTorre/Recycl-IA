@@ -12,7 +12,7 @@
     <h2 style="font-size: 12px;">Recolector Verificado ✅</h2>
 
     <div ><img class="circulo" src="/Perfil.jpg" alt=""></div>
-    <h1 style="margin-top: 20px; font-size: 20px;" >Total de puntos</h1>
+    <h1 style="margin-top: 20px; font-size: 20px;" >Total de puntos: <span id="totalPuntos">0</span> /100</h1>
     <progress class="progress" value="50" max="100"></progress>
     <h2>10/100%</h2>
   
@@ -37,8 +37,18 @@
                 const scanner = new Instascan.Scanner({ video: videoElement });
                 
                 scanner.addListener('scan', function (content) {
+                    const puntosEscaneados = parseInt(content, 10);
+                    if (!isNaN(puntosEscaneados)) {
+                        totalPuntos += puntosEscaneados;
+
+                        // Actualizar el total de puntos en la página
+                        document.getElementById('totalPuntos').textContent = totalPuntos;
+                    } else {
+                        alert('Código QR no válido. Asegúrate de escanear un código con un número válido.');
+                    }
                     alert('Código escaneado: ' + content);
                     window.location.href = content;
+
                     stopScanner(); 
                 });
 
