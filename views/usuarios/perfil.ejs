@@ -13,8 +13,7 @@
 
     <div ><img class="circulo" src="/Perfil.jpg" alt=""></div>
     <h1 style="margin-top: 20px; font-size: 20px;" >Total de puntos : <span id="totalPuntos">0</span></h1>
-    <progress class="progress" value="50" max="100"></progress>
-    <h2>10/100%</h2>
+    <progress class="progress" value="totalPuntos" max="100"></progress>
   
 
 </section>
@@ -40,14 +39,18 @@
                     if (!isNaN(puntosEscaneados)) {
                         totalPuntos += puntosEscaneados;
 
+                        const totalPuntosElement = document.getElementById('totalPuntos');
+                        totalPuntosElement.textContent = totalPuntos;
+
+
                         // Actualizar el total de puntos en la página
-                        document.getElementById('totalPuntos').textContent += totalPuntos;
-                        document.querySelector('progress').value += totalPuntos;
+                        //document.getElementById('totalPuntos').textContent = totalPuntos;
+                        document.querySelector('progress').value = totalPuntos;
 
                     } else {
                         alert('Código QR no válido. Asegúrate de escanear un código con un número válido.');
                     }
-                    alert('Puntos agregados: ' + content);
+                    alert('Puntos agregados: ' +  puntosEscaneados);
 
                     stopScanner(); 
                 });
@@ -74,7 +77,7 @@
         }
     </script>
 </section>
-<button class="espacio" style="margin-left: 21%; background-image: linear-gradient(#ff2104, #037F03) ; color: #ffffff; border: none; border-radius: 10px; padding: 10px; width:60%;">
+<button class="espacio" style="margin-left: 21%; background-image: linear-gradient(#ff2104, #ff2104) ; color: #ffffff; border: none; border-radius: 10px; padding: 10px; width:60%;">
     <a href="/miPremio" style="color: #ffffff; text-decoration: none; display: block; height: 100%; font-size: 20px; font-weight: bold;">Recompensas</a>
   </button>
   <h2 style="font-size: 15px; text-align: center; padding-top: 10px; color: white;">!Ayuda al medio ambiente y gana¡</h2>
